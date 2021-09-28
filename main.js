@@ -1,15 +1,17 @@
 var data = "./data.json";
 
 let array = [];
-let table = document.getElementById("table").getElementsByTagName("tbody")[0];
-
+let table = document.getElementById("table");
+let datos = document.getElementById("table").getElementsByTagName("tbody")[0];
+let n = 0;
 fetch(data)
   .then((res) => res.json())
   .then((resp) => {
     array = resp;
 
     array.forEach((contenido) => {
-      let newRow = table.insertRow();
+      n++;
+      let newRow = datos.insertRow();
       let cell2 = newRow.insertCell();
       let cell3 = newRow.insertCell();
       let cell4 = newRow.insertCell();
@@ -17,7 +19,7 @@ fetch(data)
       let cell6 = newRow.insertCell();
       let cell7 = newRow.insertCell();
 
-      cell2.innerHTML = contenido.last_name;
+      cell2.outerHTML = "<td scope='row'>" + contenido.last_name + "</td>";
       cell3.innerHTML = contenido.first_name;
       cell4.innerHTML = contenido.email;
       cell5.outerHTML = `<td><img src ="${contenido.photo}"></img></td>`;
@@ -45,7 +47,7 @@ function sortTable(n) {
   while (switching) {
     // Start by saying: no switching is done:
     switching = false;
-    rows = table.rows;
+    rows = datos.rows;
     /* Loop through all table rows (except the
     first, which contains table headers): */
     for (i = 1; i < rows.length - 1; i++) {
@@ -152,7 +154,7 @@ addForm.addEventListener("submit", function (e) {
   //   var jsonObject = `{"last_name":"${newLast}","first_name":"${newFirst}","email":"${newEmail}","photo":"${newPhoto}"}`;
   //   var json = JSON.parse(jsonObject);
 
-  let newRow = table.insertRow();
+  let newRow = datos.insertRow();
   let cell2 = newRow.insertCell();
   let cell3 = newRow.insertCell();
   let cell4 = newRow.insertCell();
@@ -173,14 +175,13 @@ addForm.addEventListener("submit", function (e) {
 });
 
 function deleteRow(row) {
-  var d = row.parentNode.rowIndex;
-  console.log(d);
-  table.deleteRow(d);
+  var d = row.parentNode.parentNode.rowIndex - 1;
+  datos.deleteRow(d);
 }
 
 function makeRowEditable(row) {
   var d = row.parentNode.parentNode.rowIndex - 1;
-  var r = table.rows[d];
+  var r = datos.rows[d];
   var cells = r.cells;
 
   for (var i = 0; i < cells.length - 2; i++) {
@@ -216,5 +217,5 @@ function makeRowEditable(row) {
 let eliminarTabla = document.getElementById("autodestruccion");
 
 eliminarTabla.addEventListener("click", () => {
-  table.remove();
+  datos.remove();
 });
