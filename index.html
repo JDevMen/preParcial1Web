@@ -12,30 +12,39 @@
 </head>
 
 <body>
-    <h1>Events</h1>
-    <table class="table" id="table">
+    <h1>People</h1>
+    <form id="add">
+        <div class="form-group">
+            <input type="test" class="form-control" id="lastNameForm" 
+                placeholder="Enter last name">
+        </div>
+        <div class="form-group">
+            <input type="text" 
+            class="form-control" 
+            id="firstNameForm" placeholder="Enter first name">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" id="emailForm" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="photoForm" placeholder="Enter photo url">
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitForm">Submit</button>
+    </form>
+
+    <table class="table table-striped table-hover" id = "table">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Events</th>
-                <th scope="col">Squirrel</th>
+                <th scope="col" id="lastName">Last name</th>
+                <th scope="col" id="firstName">First Name</th>
+                <th scope="col" id="email">Email</th>
+                <th scope="col" id= "photo">Photo</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
 
-    <table class="table" id="mcc table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Event</th>
-                <th scope="col">Correlation</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
     <script src="main.js"></script>
 </body>
 
