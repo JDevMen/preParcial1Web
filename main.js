@@ -15,12 +15,15 @@ fetch(data)
       let cell4 = newRow.insertCell();
       let cell5 = newRow.insertCell();
       let cell6 = newRow.insertCell();
+      let cell7 = newRow.insertCell();
 
       cell2.innerHTML = contenido.last_name;
       cell3.innerHTML = contenido.first_name;
       cell4.innerHTML = contenido.email;
       cell5.outerHTML = `<td><img src ="${contenido.photo}"></img></td>`;
       cell6.outerHTML =
+        "<td> <button type='button' class='btn btn-warning' onClick='makeRowEditable(this)'> Editar </button> </td> ";
+      cell7.outerHTML =
         "<td> <button type='button' class='btn btn-danger' onclick='deleteRow(this)' value='Delete'> Eliminar </button> </td> ";
     });
   });
@@ -127,18 +130,57 @@ addForm.addEventListener("submit", function (e) {
   let cell4 = newRow.insertCell();
   let cell5 = newRow.insertCell();
   let cell6 = newRow.insertCell();
+  let cell7 = newRow.insertCell();
 
   cell2.innerHTML = newLast;
   cell3.innerHTML = newFirst;
   cell4.innerHTML = newEmail;
   cell5.outerHTML = `<td><img src ="${newPhoto}"></img></td>`;
   cell6.outerHTML =
+    "<td> <button type='button' class='btn btn-warning' onClick='makeRowEditable(this)'> Editar </button> </td>";
+  cell7.outerHTML =
     "<td> <button type='button' class='btn btn-danger' onclick='deleteRow(this)' value='Delete'> Eliminar </button> </td>";
 
   addForm.reset();
 });
 
 function deleteRow(row) {
-  var d = row.parentNode.parentNode.rowIndex;
+  var d = row.parentNode.rowIndex;
+  console.log(d);
   table.deleteRow(d);
+}
+
+function makeRowEditable(row) {
+  var d = row.parentNode.parentNode.rowIndex - 1;
+  var r = table.rows[d];
+  var cells = r.cells;
+
+  for (var i = 0; i < cells.length - 2; i++) {
+    let editable = cells[i].getAttribute("contenteditable");
+    if (editable != null) {
+      editable = editable.toLowerCase() === "true";
+      if (editable) {
+        cells[i].setAttribute("contenteditable", false);
+      } else {
+        cells[i].setAttribute("contenteditable", true);
+      }
+    } else {
+      cells[i].setAttribute("contenteditable", true);
+    }
+    editable = cells[i].getAttribute("contenteditable");
+  }
+
+  if (cells[0].getAttribute("contenteditable") != null) {
+    let editable = cells[0].getAttribute("contenteditable") === "true";
+    if (editable) {
+      cells[4].innerHTML =
+        "<td> <button type='button' class='btn btn-warning' onClick='makeRowEditable(this)'> Editando </button> </td>";
+    } else {
+      cells[4].innerHTML =
+        "<td> <button type='button' class='btn btn-warning' onClick='makeRowEditable(this)'> Editar</button> </td>";
+    }
+  } else {
+    cells[4].outerHTML =
+      "<td> <button type='button' class='btn btn-warning' onClick='makeRowEditable(this)'> Editando </button> </td>";
+  }
 }
