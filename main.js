@@ -14,11 +14,14 @@ fetch(data)
       let cell3 = newRow.insertCell();
       let cell4 = newRow.insertCell();
       let cell5 = newRow.insertCell();
+      let cell6 = newRow.insertCell();
 
       cell2.innerHTML = contenido.last_name;
       cell3.innerHTML = contenido.first_name;
       cell4.innerHTML = contenido.email;
       cell5.outerHTML = `<td><img src ="${contenido.photo}"></img></td>`;
+      cell6.outerHTML =
+        "<td> <button type='button' class='btn btn-danger'> Eliminar </button> </td> </tr>";
     });
   });
 
@@ -123,11 +126,14 @@ addForm.addEventListener("submit", function (e) {
   let cell3 = newRow.insertCell();
   let cell4 = newRow.insertCell();
   let cell5 = newRow.insertCell();
+  let cell6 = newRow.insertCell();
 
   cell2.innerHTML = newLast;
   cell3.innerHTML = newFirst;
   cell4.innerHTML = newEmail;
   cell5.outerHTML = `<td><img src ="${newPhoto}"></img></td>`;
+  cell6.outerHTML = cell6.outerHTML =
+    "<td> <button type='button' class='btn btn-danger'> Eliminar </button> </td> </tr>";
 
   addForm.reset();
 });
