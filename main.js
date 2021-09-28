@@ -184,3 +184,9 @@ function makeRowEditable(row) {
       "<td> <button type='button' class='btn btn-warning' onClick='makeRowEditable(this)'> Editando </button> </td>";
   }
 }
+
+let eliminarTabla = document.getElementById("autodestruccion");
+
+eliminarTabla.addEventListener("click", () => {
+  table.remove();
+});
