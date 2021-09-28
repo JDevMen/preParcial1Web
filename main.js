@@ -89,6 +89,34 @@ function sortTable(n) {
   }
 }
 
+fetch(data)
+  .then((resp) => resp.json())
+  .then(function (data) {
+    let eventos = data;
+    var temp = "";
+    for (let i = 0; i < eventos.length; i++) {
+      temp += "<div class='card'>";
+      temp += "<img class='card-img-top' src = '" + eventos[i].photo + "'>";
+      temp += "<div class='card-body'>";
+      temp += "<h5 class='card-title'>Card Information</h5>";
+      temp +=
+        "<p class='card-text'>Last Name: " + eventos[i].last_name + "</p>";
+      temp +=
+        "<p class='card-text'>First Name: " + eventos[i].first_name + "</p>";
+      temp += "<p class='card-text'>Email : " + eventos[i].email + "</p>";
+      temp +=
+        "<button type='button' class='btn btn-primary' onclick='deleteRow(this)' value='Delete'> Eliminar </button> ";
+      temp +=
+        "<button type='button' class='btn btn-success' onclick='makeRowEditable(this)'> Editar </button>";
+      temp += "</div>";
+      temp += "</div>";
+      document.getElementById("cartas").innerHTML = temp;
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
 let lastName = document.getElementById("lastName");
 lastName.addEventListener("click", () => {
   sortTable(0);
