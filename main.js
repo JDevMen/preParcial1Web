@@ -21,7 +21,7 @@ fetch(data)
       cell4.innerHTML = contenido.email;
       cell5.outerHTML = `<td><img src ="${contenido.photo}"></img></td>`;
       cell6.outerHTML =
-        "<td> <button type='button' class='btn btn-danger'> Eliminar </button> </td> </tr>";
+        "<td> <button type='button' class='btn btn-danger' onclick='deleteRow(this)' value='Delete'> Eliminar </button> </td> ";
     });
   });
 
@@ -132,8 +132,13 @@ addForm.addEventListener("submit", function (e) {
   cell3.innerHTML = newFirst;
   cell4.innerHTML = newEmail;
   cell5.outerHTML = `<td><img src ="${newPhoto}"></img></td>`;
-  cell6.outerHTML = cell6.outerHTML =
-    "<td> <button type='button' class='btn btn-danger'> Eliminar </button> </td> </tr>";
+  cell6.outerHTML =
+    "<td> <button type='button' class='btn btn-danger' onclick='deleteRow(this)' value='Delete'> Eliminar </button> </td>";
 
   addForm.reset();
 });
+
+function deleteRow(row) {
+  var d = row.parentNode.parentNode.rowIndex;
+  table.deleteRow(d);
+}
